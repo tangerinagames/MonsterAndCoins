@@ -16,7 +16,7 @@
                     <string>right-5.png</string>                    
                 </array>
                 <key>delay</key>
-                <real>0.10</real>
+                <real>0.08</real>
             </dict>
             <key>player_left</key>
             <dict>
@@ -30,7 +30,7 @@
                     <string>left-5.png</string>                    
                 </array>
                 <key>delay</key>
-                <real>0.10</real>
+                <real>0.08</real>
             </dict>            
         </dict>
     </dict>

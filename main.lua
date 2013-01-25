@@ -27,12 +27,41 @@ AnimationCache.loadAnimations("assets/player/animations.plist")
 local player = MOAIProp2D.new()
 player:setLoc(200, 80)
 player:setPiv(37, 48)
---player:moveLoc(-100, 0, 5)
-
 layer:insertProp(player)
 
 local right = Animation:new('player_right', player)
-right:start()
+local left = Animation:new('player_left', player)
+
+-- MOAIInputMgr.device.keyboard:setCallback(
+--   function(key, down)
+--     if down then
+--         print(tostring(key))
+--     end
+--   end
+-- )
+
+local mainloop = MOAICoroutine.new()
+mainloop:run(function()
+  while true do
+    local x, y = player:getLoc()
+
+    if MOAIInputMgr.device.keyboard:keyIsDown(44) then
+      player:setLoc(x - 2, y)      
+      if not left.running then
+        left:start()
+      end
+    elseif MOAIInputMgr.device.keyboard:keyIsDown(46) then
+      player:setLoc(x + 2, y)      
+      if not right.running then
+        right:start()
+      end
+    else
+      left:stop()
+      right:stop()
+    end
+    coroutine.yield()
+  end
+end)
 
 -- FPS 
 charcodes = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,:;!?()&/-'
